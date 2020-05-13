@@ -14,18 +14,18 @@ import com.google.firebase.storage.UploadTask;
 
 import java.io.ByteArrayOutputStream;
 
-public class PhotoRepo {
+public class PhotoRepo { //We can only add one photo, photo needs to be serialazable in order to add more photos.
 
     FirebaseStorage storage = FirebaseStorage.getInstance();
     StorageReference storageReference = storage.getReference();
-    StorageReference pictureReference = storageReference.child("photo.jpg");
+    StorageReference photoRef = storageReference.child("photo.jpg");
 
    public void uploadPhoto(ImageView imageView){
        Bitmap bitmap = ((BitmapDrawable)imageView.getDrawable()).getBitmap();
        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
        byte[] data = byteArrayOutputStream.toByteArray();
-       UploadTask uploadTask = pictureReference.putBytes(data);
+       UploadTask uploadTask = photoRef.putBytes(data);
        uploadTask.addOnFailureListener(new OnFailureListener() {
            @Override
            public void onFailure(@NonNull Exception e) {
