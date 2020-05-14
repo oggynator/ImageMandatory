@@ -71,6 +71,7 @@ public class MainActivity extends AppCompatActivity {
     public void uploadButton(View view) {
         if (imageView.getDrawable() == null) {
             System.out.println("STATUS: NO PHOTO");
+
         } else {
             photoRepo.uploadPhoto(imageView);
             Toast.makeText(this, "Photo uploaded", Toast.LENGTH_SHORT).show();
